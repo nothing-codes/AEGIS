@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - AEGIS Antivirus</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="/" class="logo-container">
+                    <i class="fas fa-shield-alt logo-icon"></i>
+                    <span class="logo-text">AEGIS</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link" data-translate="nav-home">Главная</a>
+                <a href="/features" class="nav-link active" data-translate="nav-features">Возможности</a>
+                <a href="/download" class="nav-link" data-translate="nav-download">Скачать</a>
+                <a href="/support" class="nav-link" data-translate="nav-support">Поддержка</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <select class="language-select" id="languageSelect">
+                    <option value="ru">RU</option>
+                    <option value="en">EN</option>
+                </select>
+                <a href="/login" class="btn btn-outline" id="loginBtn" data-translate="login">Войти</a>
+                <a href="/register" class="btn btn-primary" id="registerBtn" data-translate="register">Регистрация</a>
+            </div>
+            <div class="mobile-menu-toggle"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-sparkles"></i>
+                    <span data-translate="advanced-tech">Передовые технологии</span>
+                </div>
+                <h1 class="page-hero-title">
+                    <span data-translate="features-aegis">Возможности</span>
+                    <span class="gradient-text">AEGIS</span>
+                </h1>
+                <p class="page-hero-subtitle" data-translate="features-subtitle">Полная защита для вашей цифровой жизни с использованием искусственного интеллекта</p>
+            </div>
+        </div>
+        <div class="page-hero-bg">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+        </div>
+    </section>
+
+    <section class="features-main">
+        <div class="container">
+            <div class="features-showcase">
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon"><i class="fas fa-shield-virus"></i></div>
+                    <div class="feature-showcase-content">
+                        <h3 data-translate="feature-realtime">Защита в реальном времени</h3>
+                        <p data-translate="feature-realtime-desc">Непрерывный мониторинг вашей системы 24/7. Мгновенное обнаружение и блокировка угроз до того, как они смогут навредить вашему компьютеру.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-translate="file-monitoring">Мониторинг файловой системы</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="ransomware-protection">Защита от ransomware</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="malware-blocking">Блокировка вредоносных процессов</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature-showcase-card reverse">
+                    <div class="feature-showcase-icon"><i class="fas fa-brain"></i></div>
+                    <div class="feature-showcase-content">
+                        <h3 data-translate="feature-ai">ИИ Защита</h3>
+                        <p data-translate="feature-ai-desc">Продвинутые алгоритмы машинного обучения обнаруживают новые и неизвестные угрозы, которые традиционные антивирусы могут пропустить.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-translate="neural-analysis">Нейросетевой анализ</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="behavior-analysis">Поведенческий анализ</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="predictive-protection">Предиктивная защита</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="feature-showcase-content">
+                        <h3 data-translate="feature-fast">Быстрое сканирование</h3>
+                        <p data-translate="feature-fast-desc">Молниеносное сканирование системы за секунды, а не минуты. Минимальное влияние на производительность системы.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-translate="smart-scan">Умное сканирование</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="low-resources">Низкое потребление ресурсов</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="background-optimization">Фоновая оптимизация</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-grid-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="additional-features">Дополнительные возможности</h2>
+                <p class="section-subtitle" data-translate="all-for-protection">Всё что нужно для полной защиты</p>
+            </div>
+            <div class="features-grid-modern">
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-cloud"></i></div>
+                    <h3 data-translate="cloud-protection-title">Облачная защита</h3>
+                    <p data-translate="cloud-protection-desc">Всегда актуальная база угроз через облачную синхронизацию</p>
+                </div>
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-globe"></i></div>
+                    <h3 data-translate="web-protection">Веб-защита</h3>
+                    <p data-translate="web-protection-desc">Безопасный серфинг с защитой от фишинга и вредоносных сайтов</p>
+                </div>
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-lock"></i></div>
+                    <h3 data-translate="data-protection">Защита данных</h3>
+                    <p data-translate="data-protection-desc">Защитите личные данные от хакеров и похитителей</p>
+                </div>
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-wifi"></i></div>
+                    <h3 data-translate="firewall">Сетевой экран</h3>
+                    <p data-translate="firewall-desc">Контроль входящего и исходящего трафика</p>
+                </div>
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3 data-translate="email-protection">Защита почты</h3>
+                    <p data-translate="email-protection-desc">Сканирование вложений и ссылок в письмах</p>
+                </div>
+                <div class="feature-card-modern">
+                    <div class="feature-card-icon"><i class="fas fa-usb"></i></div>
+                    <h3 data-translate="usb-protection">USB защита</h3>
+                    <p data-translate="usb-protection-desc">Автоматическое сканирование подключаемых устройств</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-translate="why-aegis-better">Почему AEGIS лучше?</h2>
+                <p class="section-subtitle" data-translate="comparison-subtitle">Сравнение с конкурентами</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="comparison-feature" data-translate="feature">Функция</div>
+                    <div class="comparison-aegis">AEGIS</div>
+                    <div class="comparison-other" data-translate="others">Другие</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-translate="ai-protection-feature">ИИ защита</div>
+                    <div class="comparison-aegis"><i class="fas fa-check-circle"></i></div>
+                    <div class="comparison-other"><i class="fas fa-times-circle"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-translate="free-forever-feature">Бесплатно навсегда</div>
+                    <div class="comparison-aegis"><i class="fas fa-check-circle"></i></div>
+                    <div class="comparison-other"><i class="fas fa-times-circle"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-translate="no-ads-feature">Без рекламы</div>
+                    <div class="comparison-aegis"><i class="fas fa-check-circle"></i></div>
+                    <div class="comparison-other"><i class="fas fa-times-circle"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-translate="low-resources-feature">Низкое потребление ресурсов</div>
+                    <div class="comparison-aegis"><i class="fas fa-check-circle"></i></div>
+                    <div class="comparison-other"><i class="fas fa-times-circle"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-feature" data-translate="cloud-updates">Облачные обновления</div>
+                    <div class="comparison-aegis"><i class="fas fa-check-circle"></i></div>
+                    <div class="comparison-other"><i class="fas fa-check-circle partial"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 data-translate="ready-to-try">Готовы попробовать?</h2>
+                <p data-translate="download-and-see">Скачайте AEGIS бесплатно и убедитесь сами</p>
+                <div class="cta-buttons">
+                    <a href="/download" class="btn btn-cta btn-large">
+                        <i class="fas fa-download"></i>
+                        <span data-translate="download-free">Скачать бесплатно</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-container">
+                        <i class="fas fa-shield-alt logo-icon"></i>
+                        <span class="logo-text">AEGIS</span>
+                    </div>
+                    <p data-translate="footer-desc">Защита нового поколения для вашего цифрового мира</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-translate="product">Продукт</h4>
+                        <a href="/features" data-translate="nav-features">Возможности</a>
+                        <a href="/download" data-translate="nav-download">Скачать</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-translate="support">Поддержка</h4>
+                        <a href="/support" data-translate="help">Помощь</a>
+                        <a href="#" data-translate="contact">Контакты</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-translate="company">Компания</h4>
+                        <a href="#" data-translate="about">О нас</a>
+                        <a href="#" data-translate="blog">Блог</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AEGIS Antivirus. <span data-translate="all-rights">Все права защищены</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

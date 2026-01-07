@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - AEGIS Antivirus</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="/" class="logo-container">
+                    <i class="fas fa-shield-alt logo-icon"></i>
+                    <span class="logo-text">AEGIS</span>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link" data-translate="nav-home">Главная</a>
+                <a href="/features" class="nav-link" data-translate="nav-features">Возможности</a>
+                <a href="/download" class="nav-link" data-translate="nav-download">Скачать</a>
+                <a href="/support" class="nav-link" data-translate="nav-support">Поддержка</a>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <select class="language-select" id="languageSelect">
+                    <option value="ru">RU</option>
+                    <option value="en">EN</option>
+                </select>
+            </div>
+            <div class="mobile-menu-toggle"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <section class="profile-page">
+        <div class="container">
+            <div class="profile-layout">
+                <aside class="profile-sidebar">
+                    <div class="profile-user-card">
+                        <div class="profile-avatar" id="profileAvatar"><i class="fas fa-user"></i></div>
+                        <h2 id="sidebarUserName">Пользователь</h2>
+                        <p id="sidebarUserEmail">user@example.com</p>
+                        <div class="profile-badge">
+                            <i class="fas fa-crown"></i>
+                            <span data-translate="free-plan">Free Plan</span>
+                        </div>
+                    </div>
+                    
+                    <nav class="profile-nav">
+                        <a href="#profile" class="profile-nav-item active" data-section="profile">
+                            <i class="fas fa-user"></i>
+                            <span data-translate="profile">Профиль</span>
+                        </a>
+                        <a href="#security" class="profile-nav-item" data-section="security">
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-translate="security">Безопасность</span>
+                        </a>
+                        <a href="#settings" class="profile-nav-item" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span data-translate="settings">Настройки</span>
+                        </a>
+                    </nav>
+                    
+                    <button class="logout-btn-sidebar" onclick="AegisApp.logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span data-translate="logout">Выйти</span>
+                    </button>
+                </aside>
+
+                <main class="profile-main">
+                    <section class="profile-section-content active" id="profile">
+                        <div class="section-header-profile">
+                            <h1 data-translate="personal-info">Личная информация</h1>
+                            <p data-translate="manage-data">Управляйте своими личными данными</p>
+                        </div>
+                        
+                        <div class="profile-card-new">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-user-circle"></i> <span data-translate="basic-info">Основная информация</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <form id="profileForm" class="profile-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label data-translate="username">Имя пользователя</label>
+                                            <input type="text" id="inputName" data-translate="your-name" placeholder="Ваше имя">
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-translate="email">Email</label>
+                                            <input type="email" id="inputEmail" placeholder="email@example.com" disabled>
+                                            <span class="input-hint" data-translate="email-cant-change">Email нельзя изменить</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label data-translate="phone">Телефон</label>
+                                            <input type="tel" id="inputPhone" placeholder="+7 (999) 123-45-67">
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-translate="registration-date">Дата регистрации</label>
+                                            <input type="text" id="inputRegDate" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="button" class="btn btn-secondary" onclick="resetProfileForm()" data-translate="cancel">Отменить</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save"></i>
+                                            <span data-translate="save-changes">Сохранить изменения</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="profile-card-new">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-chart-line"></i> <span data-translate="account-stats">Статистика аккаунта</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="stats-grid-profile">
+                                    <div class="stat-item-profile">
+                                        <div class="stat-icon-profile purple"><i class="fas fa-clock"></i></div>
+                                        <div class="stat-info-profile">
+                                            <span class="stat-value-profile" id="daysProtected">0</span>
+                                            <span class="stat-label-profile" data-translate="days-with-us">Дней с нами</span>
+                                        </div>
+                                    </div>
+                                    <div class="stat-item-profile">
+                                        <div class="stat-icon-profile green"><i class="fas fa-shield-alt"></i></div>
+                                        <div class="stat-info-profile">
+                                            <span class="stat-value-profile" data-translate="active">Активна</span>
+                                            <span class="stat-label-profile" data-translate="protection-status">Защита</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="profile-section-content" id="security">
+                        <div class="section-header-profile">
+                            <h1 data-translate="security">Безопасность</h1>
+                            <p data-translate="security-settings">Настройки безопасности вашего аккаунта</p>
+                        </div>
+                        
+                        <div class="profile-card-new">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-key"></i> <span data-translate="change-password">Изменить пароль</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <form id="passwordForm" class="profile-form">
+                                    <div class="form-group">
+                                        <label data-translate="current-password">Текущий пароль</label>
+                                        <div class="password-input-wrapper">
+                                            <input type="password" id="currentPassword" data-translate="enter-current-password" placeholder="Введите текущий пароль">
+                                            <button type="button" class="password-toggle" onclick="togglePasswordVisibility('currentPassword')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label data-translate="new-password">Новый пароль</label>
+                                            <div class="password-input-wrapper">
+                                                <input type="password" id="newPassword" data-translate="min-6-chars" placeholder="Минимум 6 символов">
+                                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('newPassword')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label data-translate="confirm-new-password">Подтвердите пароль</label>
+                                            <div class="password-input-wrapper">
+                                                <input type="password" id="confirmNewPassword" data-translate="repeat-password" placeholder="Повторите пароль">
+                                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('confirmNewPassword')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-lock"></i>
+                                            <span data-translate="change-password">Изменить пароль</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="profile-card-new danger">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-exclamation-triangle"></i> <span data-translate="danger-zone">Опасная зона</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="danger-item">
+                                    <div class="danger-info">
+                                        <h4 data-translate="delete-account">Удалить аккаунт</h4>
+                                        <p data-translate="delete-account-desc">После удаления аккаунта все ваши данные будут безвозвратно утеряны.</p>
+                                    </div>
+                                    <button class="btn btn-danger" onclick="deleteAccount()">
+                                        <i class="fas fa-trash"></i>
+                                        <span data-translate="delete">Удалить</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="profile-section-content" id="settings">
+                        <div class="section-header-profile">
+                            <h1 data-translate="settings">Настройки</h1>
+                            <p data-translate="manage-data">Персонализируйте ваш опыт использования</p>
+                        </div>
+                        
+                        <div class="profile-card-new">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-palette"></i> <span data-translate="appearance">Внешний вид</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="setting-item">
+                                    <div class="setting-info">
+                                        <h4 data-translate="dark-theme">Тёмная тема</h4>
+                                        <p data-translate="dark-theme-desc">Использовать тёмную тему интерфейса</p>
+                                    </div>
+                                    <label class="toggle-switch-new">
+                                        <input type="checkbox" id="darkModeToggle">
+                                        <span class="toggle-slider-new"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-card-new">
+                            <div class="profile-card-header">
+                                <h3><i class="fas fa-language"></i> <span data-translate="language">Язык</span></h3>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="form-group">
+                                    <label data-translate="interface-language">Язык интерфейса</label>
+                                    <select id="languageSetting">
+                                        <option value="ru">Русский</option>
+                                        <option value="en">English</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!currentUser) {
+                window.location.href = '/login';
+                return;
+            }
+            initializeProfile();
+            initializeNavigation();
+            initializeSettings();
+        });
+
+        function initializeProfile() {
+            var users = JSON.parse(localStorage.getItem('users') || '[]');
+            var user = users.find(function(u) { return u.id === currentUser.id; });
+            
+            document.getElementById('sidebarUserName').textContent = currentUser.name;
+            document.getElementById('sidebarUserEmail').textContent = currentUser.email;
+            document.getElementById('inputName').value = currentUser.name;
+            document.getElementById('inputEmail').value = currentUser.email;
+            
+            if (user) {
+                var regDate = new Date(user.registeredAt);
+                document.getElementById('inputRegDate').value = regDate.toLocaleDateString('ru-RU');
+                document.getElementById('inputPhone').value = user.phone || '';
+                var days = Math.floor((new Date() - regDate) / (1000 * 60 * 60 * 24));
+                document.getElementById('daysProtected').textContent = days;
+            }
+            
+            document.getElementById('profileForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveProfile();
+            });
+            
+            document.getElementById('passwordForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                changePassword();
+            });
+        }
+
+        function initializeNavigation() {
+            var navItems = document.querySelectorAll('.profile-nav-item');
+            navItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var section = this.getAttribute('data-section');
+                    navItems.forEach(function(nav) { nav.classList.remove('active'); });
+                    this.classList.add('active');
+                    document.querySelectorAll('.profile-section-content').forEach(function(sec) {
+                        sec.classList.remove('active');
+                    });
+                    document.getElementById(section).classList.add('active');
+                });
+            });
+        }
+
+        function initializeSettings() {
+            var darkToggle = document.getElementById('darkModeToggle');
+            darkToggle.checked = currentTheme === 'dark';
+            darkToggle.addEventListener('change', function() { AegisApp.toggleTheme(); });
+            document.getElementById('languageSetting').value = currentLanguage;
+            document.getElementById('languageSetting').addEventListener('change', function() {
+                AegisApp.setLanguage(this.value);
+            });
+        }
+
+        function saveProfile() {
+            var users = JSON.parse(localStorage.getItem('users') || '[]');
+            var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
+            if (userIndex !== -1) {
+                users[userIndex].name = document.getElementById('inputName').value;
+                users[userIndex].phone = document.getElementById('inputPhone').value;
+                localStorage.setItem('users', JSON.stringify(users));
+                currentUser.name = users[userIndex].name;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                document.getElementById('sidebarUserName').textContent = currentUser.name;
+                AegisApp.showNotification(translations[currentLanguage]['profile-saved'], 'success');
+            }
+        }
+
+        function resetProfileForm() {
+            document.getElementById('inputName').value = currentUser.name;
+            var users = JSON.parse(localStorage.getItem('users') || '[]');
+            var user = users.find(function(u) { return u.id === currentUser.id; });
+            if (user) document.getElementById('inputPhone').value = user.phone || '';
+        }
+
+        function changePassword() {
+            var current = document.getElementById('currentPassword').value;
+            var newPass = document.getElementById('newPassword').value;
+            var confirm = document.getElementById('confirmNewPassword').value;
+            
+            if (!current || !newPass || !confirm) {
+                AegisApp.showNotification(translations[currentLanguage]['fill-all-fields'], 'error');
+                return;
+            }
+            if (newPass !== confirm) {
+                AegisApp.showNotification(translations[currentLanguage]['passwords-not-match'], 'error');
+                return;
+            }
+            if (newPass.length < 6) {
+                AegisApp.showNotification(translations[currentLanguage]['password-min-6'], 'error');
+                return;
+            }
+            
+            var users = JSON.parse(localStorage.getItem('users') || '[]');
+            var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
+            
+            if (userIndex !== -1) {
+                if (users[userIndex].password !== current) {
+                    AegisApp.showNotification(translations[currentLanguage]['wrong-password'], 'error');
+                    return;
+                }
+                users[userIndex].password = newPass;
+                localStorage.setItem('users', JSON.stringify(users));
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmNewPassword').value = '';
+                AegisApp.showNotification(translations[currentLanguage]['password-changed'], 'success');
+            }
+        }
+
+        function togglePasswordVisibility(inputId) {
+            var input = document.getElementById(inputId);
+            var icon = input.parentElement.querySelector('.password-toggle i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function deleteAccount() {
+            var msg = translations[currentLanguage]['confirm-delete'];
+            if (confirm(msg)) {
+                var users = JSON.parse(localStorage.getItem('users') || '[]');
+                users = users.filter(function(u) { return u.id !== currentUser.id; });
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('sessionId');
+                AegisApp.showNotification(translations[currentLanguage]['account-deleted'], 'success');
+                setTimeout(function() { window.location.href = '/'; }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>
