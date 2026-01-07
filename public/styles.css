@@ -8579,3 +8579,137 @@ body {
         width: 100%;
     }
 }
+
+
+/* ========================================
+   LANGUAGE SELECTOR - BEAUTIFUL CARDS
+   ======================================== */
+
+.language-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.language-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.language-option:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+    transform: translateX(5px);
+}
+
+.language-option.active {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+}
+
+.language-flag {
+    width: 50px;
+    height: 50px;
+    background: var(--bg-tertiary);
+    border-radius: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.language-option:hover .language-flag,
+.language-option.active .language-flag {
+    background: var(--bg-secondary);
+    transform: scale(1.05);
+}
+
+.flag-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+.language-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.language-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.language-native {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.language-check {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease;
+}
+
+.language-check i {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.language-option.active .language-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Animation for selection */
+.language-option.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gradient);
+    border-radius: 4px 0 0 4px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .language-option {
+        padding: 0.875rem 1rem;
+    }
+    
+    .language-flag {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .flag-icon {
+        font-size: 1.5rem;
+    }
+}

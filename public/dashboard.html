@@ -240,12 +240,32 @@
                                 <h3><i class="fas fa-language"></i> <span data-translate="language">Язык</span></h3>
                             </div>
                             <div class="profile-card-body">
-                                <div class="form-group">
-                                    <label data-translate="interface-language">Язык интерфейса</label>
-                                    <select id="languageSetting">
-                                        <option value="ru">Русский</option>
-                                        <option value="en">English</option>
-                                    </select>
+                                <label class="language-label" data-translate="interface-language">Язык интерфейса</label>
+                                <div class="language-selector">
+                                    <div class="language-option" data-lang="ru">
+                                        <div class="language-flag">
+                                            <span class="flag-icon">🇷🇺</span>
+                                        </div>
+                                        <div class="language-info">
+                                            <span class="language-name">Русский</span>
+                                            <span class="language-native">Russian</span>
+                                        </div>
+                                        <div class="language-check">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
+                                    <div class="language-option" data-lang="en">
+                                        <div class="language-flag">
+                                            <span class="flag-icon">🇺🇸</span>
+                                        </div>
+                                        <div class="language-info">
+                                            <span class="language-name">English</span>
+                                            <span class="language-native">Английский</span>
+                                        </div>
+                                        <div class="language-check">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -316,9 +336,28 @@
             var darkToggle = document.getElementById('darkModeToggle');
             darkToggle.checked = currentTheme === 'dark';
             darkToggle.addEventListener('change', function() { AegisApp.toggleTheme(); });
-            document.getElementById('languageSetting').value = currentLanguage;
-            document.getElementById('languageSetting').addEventListener('change', function() {
-                AegisApp.setLanguage(this.value);
+            
+            // Language selector
+            var langOptions = document.querySelectorAll('.language-option');
+            updateLanguageSelection();
+            
+            langOptions.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    var lang = this.getAttribute('data-lang');
+                    AegisApp.setLanguage(lang);
+                    updateLanguageSelection();
+                });
+            });
+        }
+        
+        function updateLanguageSelection() {
+            var langOptions = document.querySelectorAll('.language-option');
+            langOptions.forEach(function(option) {
+                if (option.getAttribute('data-lang') === currentLanguage) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
             });
         }
 
