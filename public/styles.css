@@ -8650,8 +8650,7 @@ body {
 .language-info {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    align-items: center;
 }
 
 .language-name {
@@ -8661,8 +8660,7 @@ body {
 }
 
 .language-native {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    display: none;
 }
 
 .language-check {
@@ -8688,14 +8686,7 @@ body {
 
 /* Animation for selection */
 .language-option.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--gradient);
-    border-radius: 4px 0 0 4px;
+    display: none;
 }
 
 /* Responsive */
