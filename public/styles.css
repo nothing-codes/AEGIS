@@ -6539,6 +6539,44 @@ body {
     gap: 0.5rem;
 }
 
+/* Auth Required Notice for Download */
+.auth-required-notice {
+    background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+    border: 2px dashed var(--primary-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.auth-notice-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.auth-notice-content i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.auth-notice-content p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.auth-notice-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.auth-notice-buttons .btn-small {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+}
+
 .coming-soon-content {
     text-align: center;
     padding: 2rem 0;

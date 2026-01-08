@@ -74,6 +74,7 @@ const translations = {
         'wrong-password': 'Неверный текущий пароль',
         'invalid-credentials': 'Неверный email или пароль',
         'user-exists': 'Пользователь уже существует',
+        'login-to-download': 'Войдите или зарегистрируйтесь для скачивания',
         
         // Home page
         'hero-badge': 'Новое поколение защиты',
@@ -398,6 +399,7 @@ const translations = {
         'wrong-password': 'Wrong current password',
         'invalid-credentials': 'Invalid email or password',
         'user-exists': 'User already exists',
+        'login-to-download': 'Sign in or register to download',
 
         // Home page
         'hero-badge': 'Next Generation Protection',
@@ -669,6 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateAuthUI();
     initializeParticles();
     initializeDashboard();
+    initializeDownloadPage();
 });
 
 function initializeThemeToggle() {
@@ -927,6 +930,21 @@ function showNotification(message, type) {
 
 function downloadFile(platform) {
     showNotification('Starting download for ' + platform + '...', 'success');
+}
+
+function initializeDownloadPage() {
+    var downloadBtn = document.getElementById('downloadBtn');
+    var authNotice = document.getElementById('authNotice');
+    
+    if (downloadBtn && authNotice) {
+        if (currentUser) {
+            downloadBtn.style.display = 'flex';
+            authNotice.style.display = 'none';
+        } else {
+            downloadBtn.style.display = 'none';
+            authNotice.style.display = 'block';
+        }
+    }
 }
 
 window.AegisApp = {

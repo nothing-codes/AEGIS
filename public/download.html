@@ -103,10 +103,20 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="https://github.com/nothing-codes/AEGIS/releases/download/release/Aegis.rar" class="btn btn-primary btn-full btn-large">
+                        <a href="https://github.com/nothing-codes/AEGIS/releases/download/release/Aegis.rar" class="btn btn-primary btn-full btn-large download-btn" id="downloadBtn">
                             <i class="fas fa-download"></i>
                             <span data-translate="download-for-windows">Скачать для Windows</span>
                         </a>
+                        <div class="auth-required-notice" id="authNotice" style="display: none;">
+                            <div class="auth-notice-content">
+                                <i class="fas fa-lock"></i>
+                                <p data-translate="login-to-download">Войдите или зарегистрируйтесь для скачивания</p>
+                                <div class="auth-notice-buttons">
+                                    <a href="/login" class="btn btn-outline btn-small" data-translate="login">Войти</a>
+                                    <a href="/register" class="btn btn-primary btn-small" data-translate="register">Регистрация</a>
+                                </div>
+                            </div>
+                        </div>
                         <p class="download-note">
                             <i class="fas fa-shield-alt"></i>
                             <span data-translate="verified-safe">Проверено и безопасно</span>

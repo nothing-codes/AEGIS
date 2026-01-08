@@ -142,6 +142,10 @@ async function checkSession() {
             localStorage.removeItem('currentUser');
         }
         updateAuthUI();
+        // Обновляем страницу скачивания после проверки сессии
+        if (typeof initializeDownloadPage === 'function') {
+            initializeDownloadPage();
+        }
     } catch (err) {
         console.error(err);
     }
