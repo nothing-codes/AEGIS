@@ -8681,32 +8681,6 @@ body {
    ENHANCED MOBILE RESPONSIVE STYLES
    ======================================== */
 
-/* Mobile Menu */
-.nav-menu.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-primary);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem;
-    gap: 0;
-    box-shadow: var(--shadow-lg);
-    z-index: 1000;
-}
-
-.nav-menu.active .nav-link {
-    padding: 1rem;
-    border-radius: 0.75rem;
-    text-align: center;
-}
-
-.nav-menu.active .nav-link:hover {
-    background: var(--bg-secondary);
-}
-
 .mobile-menu-toggle.active span:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
 }
@@ -9495,9 +9469,10 @@ body {
         height: calc(100dvh - 60px);
         background: var(--bg-primary);
         flex-direction: column;
+        align-items: stretch;
         padding: 1.5rem;
         padding-bottom: 100px;
-        gap: 1rem;
+        gap: 0.75rem;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         overflow-y: auto;
@@ -9510,20 +9485,25 @@ body {
     }
     
     .nav-menu .nav-link {
+        display: block;
+        width: 100%;
         padding: 1rem 1.5rem;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        font-weight: 500;
         border-radius: 12px;
         background: var(--bg-secondary);
         text-align: center;
         border: 1px solid var(--border-color);
         transition: all 0.2s ease;
+        color: var(--text-primary);
+        text-decoration: none;
     }
     
     .nav-menu .nav-link:hover,
     .nav-menu .nav-link.active {
-        background: var(--primary-light);
+        background: var(--primary);
         border-color: var(--primary);
-        transform: scale(1.02);
+        color: white;
     }
     
     /* Mobile menu buttons */
@@ -9540,6 +9520,7 @@ body {
         width: 100%;
         padding: 1rem;
         font-size: 1rem;
+        border-radius: 12px;
     }
     
     /* Hide desktop controls */
