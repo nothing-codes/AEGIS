@@ -76,6 +76,22 @@ const translations = {
         'user-exists': 'Пользователь уже существует',
         'login-to-download': 'Войдите или зарегистрируйтесь для скачивания',
         
+        // Terms Modal
+        'terms-title': 'Условия использования',
+        'terms-section-1': '1. Общие положения',
+        'terms-text-1': 'Настоящие Условия использования регулируют отношения между пользователем и AEGIS Antivirus. Используя наш сервис, вы соглашаетесь с данными условиями.',
+        'terms-section-2': '2. Использование сервиса',
+        'terms-text-2': 'AEGIS Antivirus предоставляется бесплатно для личного использования. Вы обязуетесь использовать программу только в законных целях и не нарушать права третьих лиц.',
+        'terms-section-3': '3. Конфиденциальность',
+        'terms-text-3': 'Мы уважаем вашу конфиденциальность. Собранные данные используются исключительно для улучшения качества защиты и не передаются третьим лицам без вашего согласия.',
+        'terms-section-4': '4. Ограничение ответственности',
+        'terms-text-4': 'AEGIS Antivirus предоставляется "как есть". Мы не несём ответственности за возможные убытки, связанные с использованием программы.',
+        'terms-section-5': '5. Обновления',
+        'terms-text-5': 'Мы оставляем за собой право обновлять данные условия. Продолжая использовать сервис после изменений, вы принимаете обновлённые условия.',
+        'terms-section-6': '6. Контакты',
+        'terms-text-6': 'По всем вопросам обращайтесь на support@aegis-av.com или в наш Telegram канал.',
+        'accept-terms': 'Принять условия',
+        
         // Home page
         'hero-badge': 'Новое поколение защиты',
         'hero-title-1': 'Максимальная',
@@ -400,6 +416,22 @@ const translations = {
         'invalid-credentials': 'Invalid email or password',
         'user-exists': 'User already exists',
         'login-to-download': 'Sign in or register to download',
+        
+        // Terms Modal
+        'terms-title': 'Terms of Use',
+        'terms-section-1': '1. General Provisions',
+        'terms-text-1': 'These Terms of Use govern the relationship between the user and AEGIS Antivirus. By using our service, you agree to these terms.',
+        'terms-section-2': '2. Use of Service',
+        'terms-text-2': 'AEGIS Antivirus is provided free of charge for personal use. You agree to use the software only for lawful purposes and not to violate the rights of third parties.',
+        'terms-section-3': '3. Privacy',
+        'terms-text-3': 'We respect your privacy. Collected data is used solely to improve protection quality and is not shared with third parties without your consent.',
+        'terms-section-4': '4. Limitation of Liability',
+        'terms-text-4': 'AEGIS Antivirus is provided "as is". We are not responsible for any damages related to the use of the software.',
+        'terms-section-5': '5. Updates',
+        'terms-text-5': 'We reserve the right to update these terms. By continuing to use the service after changes, you accept the updated terms.',
+        'terms-section-6': '6. Contact',
+        'terms-text-6': 'For any questions, contact support@aegis-av.com or our Telegram channel.',
+        'accept-terms': 'Accept Terms',
 
         // Home page
         'hero-badge': 'Next Generation Protection',

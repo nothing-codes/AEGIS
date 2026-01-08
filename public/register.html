@@ -142,7 +142,7 @@
                             <label class="checkbox-label">
                                 <input type="checkbox" id="terms" required>
                                 <span class="custom-checkbox"></span>
-                                <span><span data-translate="agree-terms">Я согласен с</span> <a href="#" data-translate="terms-of-use">условиями использования</a></span>
+                                <span><span data-translate="agree-terms">Я согласен с</span> <a href="#" onclick="openTermsModal(); return false;" data-translate="terms-of-use">условиями использования</a></span>
                             </label>
                         </div>
                         
@@ -152,21 +152,6 @@
                         </button>
                     </form>
 
-                    <div class="auth-divider">
-                        <span data-translate="or">или</span>
-                    </div>
-
-                    <div class="social-login">
-                        <button class="btn btn-social btn-google">
-                            <i class="fab fa-google"></i>
-                            <span>Google</span>
-                        </button>
-                        <button class="btn btn-social btn-vk">
-                            <i class="fab fa-vk"></i>
-                            <span>VK</span>
-                        </button>
-                    </div>
-                    
                     <div class="auth-form-footer">
                         <p><span data-translate="have-account">Уже есть аккаунт?</span> <a href="/login" data-translate="sign-in">Войти</a></p>
                     </div>
@@ -174,6 +159,40 @@
             </div>
         </div>
     </section>
+
+    <!-- Terms Modal -->
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content terms-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-contract"></i> <span data-translate="terms-title">Условия использования</span></h3>
+                <button class="modal-close" onclick="closeTermsModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="terms-content" id="termsContent">
+                    <h4 data-translate="terms-section-1">1. Общие положения</h4>
+                    <p data-translate="terms-text-1">Настоящие Условия использования регулируют отношения между пользователем и AEGIS Antivirus. Используя наш сервис, вы соглашаетесь с данными условиями.</p>
+                    
+                    <h4 data-translate="terms-section-2">2. Использование сервиса</h4>
+                    <p data-translate="terms-text-2">AEGIS Antivirus предоставляется бесплатно для личного использования. Вы обязуетесь использовать программу только в законных целях и не нарушать права третьих лиц.</p>
+                    
+                    <h4 data-translate="terms-section-3">3. Конфиденциальность</h4>
+                    <p data-translate="terms-text-3">Мы уважаем вашу конфиденциальность. Собранные данные используются исключительно для улучшения качества защиты и не передаются третьим лицам без вашего согласия.</p>
+                    
+                    <h4 data-translate="terms-section-4">4. Ограничение ответственности</h4>
+                    <p data-translate="terms-text-4">AEGIS Antivirus предоставляется "как есть". Мы не несём ответственности за возможные убытки, связанные с использованием программы.</p>
+                    
+                    <h4 data-translate="terms-section-5">5. Обновления</h4>
+                    <p data-translate="terms-text-5">Мы оставляем за собой право обновлять данные условия. Продолжая использовать сервис после изменений, вы принимаете обновлённые условия.</p>
+                    
+                    <h4 data-translate="terms-section-6">6. Контакты</h4>
+                    <p data-translate="terms-text-6">По всем вопросам обращайтесь на support@aegis-av.com или в наш Telegram канал.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="acceptTerms()" data-translate="accept-terms">Принять условия</button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -230,6 +249,36 @@
                 fill.style.background = '#10b981';
                 text.textContent = labels[lang].excellent;
                 text.style.color = '#10b981';
+            }
+        });
+
+        // Terms Modal Functions
+        function openTermsModal() {
+            document.getElementById('termsModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTermsModal() {
+            document.getElementById('termsModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function acceptTerms() {
+            document.getElementById('terms').checked = true;
+            closeTermsModal();
+        }
+
+        // Close modal on overlay click
+        document.getElementById('termsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTermsModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTermsModal();
             }
         });
     </script>
