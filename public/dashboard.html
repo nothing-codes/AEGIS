@@ -202,7 +202,7 @@
                                         <h4 data-translate="delete-account">Удалить аккаунт</h4>
                                         <p data-translate="delete-account-desc">После удаления аккаунта все ваши данные будут безвозвратно утеряны.</p>
                                     </div>
-                                    <button class="btn btn-danger" onclick="deleteAccount()">
+                                    <button class="btn btn-danger" onclick="deleteAccountHandler()">
                                         <i class="fas fa-trash"></i>
                                         <span data-translate="delete">Удалить</span>
                                     </button>
@@ -274,7 +274,9 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
+    <script src="supabase-config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             if (!currentUser) {
@@ -310,7 +312,7 @@
             
             document.getElementById('passwordForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                changePassword();
+                changePasswordForm();
             });
         }
 
@@ -359,17 +361,28 @@
             });
         }
 
-        function saveProfile() {
-            var users = JSON.parse(localStorage.getItem('users') || '[]');
-            var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
-            if (userIndex !== -1) {
-                users[userIndex].name = document.getElementById('inputName').value;
-                users[userIndex].phone = document.getElementById('inputPhone').value;
-                localStorage.setItem('users', JSON.stringify(users));
-                currentUser.name = users[userIndex].name;
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                document.getElementById('sidebarUserName').textContent = currentUser.name;
-                AegisApp.showNotification(translations[currentLanguage]['profile-saved'], 'success');
+        async function saveProfile() {
+            var name = document.getElementById('inputName').value;
+            var phone = document.getElementById('inputPhone').value;
+            
+            if (typeof updateProfile === 'function') {
+                var success = await updateProfile(name, phone);
+                if (success) {
+                    document.getElementById('sidebarUserName').textContent = name;
+                }
+            } else {
+                // Fallback to localStorage
+                var users = JSON.parse(localStorage.getItem('users') || '[]');
+                var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
+                if (userIndex !== -1) {
+                    users[userIndex].name = name;
+                    users[userIndex].phone = phone;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    currentUser.name = name;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    document.getElementById('sidebarUserName').textContent = currentUser.name;
+                    AegisApp.showNotification(translations[currentLanguage]['profile-saved'], 'success');
+                }
             }
         }
 
@@ -380,7 +393,7 @@
             if (user) document.getElementById('inputPhone').value = user.phone || '';
         }
 
-        function changePassword() {
+        async function changePasswordForm() {
             var current = document.getElementById('currentPassword').value;
             var newPass = document.getElementById('newPassword').value;
             var confirm = document.getElementById('confirmNewPassword').value;
@@ -398,20 +411,30 @@
                 return;
             }
             
-            var users = JSON.parse(localStorage.getItem('users') || '[]');
-            var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
-            
-            if (userIndex !== -1) {
-                if (users[userIndex].password !== current) {
-                    AegisApp.showNotification(translations[currentLanguage]['wrong-password'], 'error');
-                    return;
+            if (typeof changePassword === 'function') {
+                var success = await changePassword(current, newPass);
+                if (success) {
+                    document.getElementById('currentPassword').value = '';
+                    document.getElementById('newPassword').value = '';
+                    document.getElementById('confirmNewPassword').value = '';
                 }
-                users[userIndex].password = newPass;
-                localStorage.setItem('users', JSON.stringify(users));
-                document.getElementById('currentPassword').value = '';
-                document.getElementById('newPassword').value = '';
-                document.getElementById('confirmNewPassword').value = '';
-                AegisApp.showNotification(translations[currentLanguage]['password-changed'], 'success');
+            } else {
+                // Fallback to localStorage
+                var users = JSON.parse(localStorage.getItem('users') || '[]');
+                var userIndex = users.findIndex(function(u) { return u.id === currentUser.id; });
+                
+                if (userIndex !== -1) {
+                    if (users[userIndex].password !== current) {
+                        AegisApp.showNotification(translations[currentLanguage]['wrong-password'], 'error');
+                        return;
+                    }
+                    users[userIndex].password = newPass;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    document.getElementById('currentPassword').value = '';
+                    document.getElementById('newPassword').value = '';
+                    document.getElementById('confirmNewPassword').value = '';
+                    AegisApp.showNotification(translations[currentLanguage]['password-changed'], 'success');
+                }
             }
         }
 
@@ -429,16 +452,21 @@
             }
         }
 
-        function deleteAccount() {
+        async function deleteAccountHandler() {
             var msg = translations[currentLanguage]['confirm-delete'];
             if (confirm(msg)) {
-                var users = JSON.parse(localStorage.getItem('users') || '[]');
-                users = users.filter(function(u) { return u.id !== currentUser.id; });
-                localStorage.setItem('users', JSON.stringify(users));
-                localStorage.removeItem('currentUser');
-                localStorage.removeItem('sessionId');
-                AegisApp.showNotification(translations[currentLanguage]['account-deleted'], 'success');
-                setTimeout(function() { window.location.href = '/'; }, 1500);
+                if (typeof deleteAccount === 'function') {
+                    await deleteAccount();
+                } else {
+                    // Fallback to localStorage
+                    var users = JSON.parse(localStorage.getItem('users') || '[]');
+                    users = users.filter(function(u) { return u.id !== currentUser.id; });
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('sessionId');
+                    AegisApp.showNotification(translations[currentLanguage]['account-deleted'], 'success');
+                    setTimeout(function() { window.location.href = '/'; }, 1500);
+                }
             }
         }
     </script>
