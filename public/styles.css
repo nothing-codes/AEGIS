@@ -9690,5 +9690,5 @@ body {
 
 /* Fix burger icon color */
 .mobile-menu-toggle span {
-    background: var(--primary) !important;
+    background: #8b5cf6 !important;
 }
