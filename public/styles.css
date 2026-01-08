@@ -5784,35 +5784,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--glass);
-        backdrop-filter: blur(20px);
-        border-top: 1px solid var(--glass-border);
-        flex-direction: column;
-        padding: 1rem 0;
-        gap: 0;
-    }
-    
-    .nav-menu.active {
-        display: flex;
-    }
-    
-    .nav-menu .nav-link {
-        padding: 1rem 2rem;
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid var(--border-light);
-    }
-    
-    .nav-menu .nav-link:last-child {
-        border-bottom: none;
-    }
-    
     .mobile-menu-toggle {
         display: flex;
     }
