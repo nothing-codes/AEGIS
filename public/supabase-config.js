@@ -8,7 +8,7 @@ const SUPABASE_URL = 'https://pgijhusogwvtlaoxtqow.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_bjVuVHnhJ9xbvzwE2UMLBw_beWiu8e-';
 
 // Инициализация Supabase клиента
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ========================================
 // AUTH FUNCTIONS
@@ -25,7 +25,7 @@ async function supabaseRegister(email, password, confirmPassword) {
     }
 
     try {
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabaseClient.auth.signUp({
             email: email,
             password: password,
             options: {
@@ -46,7 +46,7 @@ async function supabaseRegister(email, password, confirmPassword) {
 
         // Сохраняем профиль в таблицу profiles
         if (data.user) {
-            await supabase.from('profiles').upsert({
+            await supabaseClient.from('profiles').upsert({
                 id: data.user.id,
                 email: email,
                 name: email.split('@')[0],
@@ -74,7 +74,7 @@ async function supabaseRegister(email, password, confirmPassword) {
 
 async function supabaseLogin(email, password) {
     try {
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
             email: email,
             password: password
         });
@@ -85,7 +85,7 @@ async function supabaseLogin(email, password) {
         }
 
         // Получаем профиль пользователя
-        const { data: profile } = await supabase
+        const { data: profile } = await supabaseClient
             .from('profiles')
             .select('*')
             .eq('id', data.user.id)
@@ -111,7 +111,7 @@ async function supabaseLogin(email, password) {
 
 async function supabaseLogout() {
     try {
-        await supabase.auth.signOut();
+        await supabaseClient.auth.signOut();
         currentUser = null;
         localStorage.removeItem('currentUser');
         showNotification(translations[currentLanguage]['logout-success'], 'success');
@@ -123,9 +123,9 @@ async function supabaseLogout() {
 
 async function checkSession() {
     try {
-        const { data: { session } } = await supabase.auth.getSession();
+        const { data: { session } } = await supabaseClient.auth.getSession();
         if (session) {
-            const { data: profile } = await supabase
+            const { data: profile } = await supabaseClient
                 .from('profiles')
                 .select('*')
                 .eq('id', session.user.id)
@@ -151,7 +151,7 @@ async function updateProfile(name, phone) {
     if (!currentUser) return false;
     
     try {
-        const { error } = await supabase
+        const { error } = await supabaseClient
             .from('profiles')
             .update({ name: name, phone: phone })
             .eq('id', currentUser.id);
@@ -173,7 +173,7 @@ async function updateProfile(name, phone) {
 
 async function changePassword(currentPassword, newPassword) {
     try {
-        const { error } = await supabase.auth.updateUser({
+        const { error } = await supabaseClient.auth.updateUser({
             password: newPassword
         });
 
@@ -195,10 +195,10 @@ async function deleteAccount() {
     
     try {
         // Удаляем профиль
-        await supabase.from('profiles').delete().eq('id', currentUser.id);
+        await supabaseClient.from('profiles').delete().eq('id', currentUser.id);
         
         // Выходим
-        await supabase.auth.signOut();
+        await supabaseClient.auth.signOut();
         currentUser = null;
         localStorage.removeItem('currentUser');
         
