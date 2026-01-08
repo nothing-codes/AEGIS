@@ -9526,7 +9526,7 @@ body {
         flex-direction: column;
         padding: 1.5rem;
         padding-bottom: 100px;
-        gap: 0.5rem;
+        gap: 1rem;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         overflow-y: auto;
@@ -9539,16 +9539,20 @@ body {
     }
     
     .nav-menu .nav-link {
-        padding: 1rem 1.25rem;
+        padding: 1rem 1.5rem;
         font-size: 1.1rem;
-        border-radius: 0.75rem;
+        border-radius: 12px;
         background: var(--bg-secondary);
         text-align: center;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
     }
     
     .nav-menu .nav-link:hover,
     .nav-menu .nav-link.active {
         background: var(--primary-light);
+        border-color: var(--primary);
+        transform: scale(1.02);
     }
     
     /* Mobile menu buttons */
@@ -9659,7 +9663,7 @@ body {
         flex-direction: column;
         padding: 1.5rem;
         padding-bottom: 100px;
-        gap: 0.5rem;
+        gap: 1rem;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         overflow-y: auto;
@@ -9672,28 +9676,29 @@ body {
     }
     
     .nav-menu-mobile .nav-link {
-        padding: 1rem 1.25rem;
+        padding: 1rem 1.5rem;
         font-size: 1.1rem;
-        border-radius: 0.75rem;
+        border-radius: 12px;
         background: var(--bg-secondary);
         text-align: center;
         color: var(--text-primary);
         text-decoration: none;
         display: block;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s ease;
     }
     
     .nav-menu-mobile .nav-link:hover {
         background: var(--primary-light);
+        border-color: var(--primary);
+        transform: scale(1.02);
     }
     
-    .profile-mobile-nav {
-        margin-top: 1rem;
+    .nav-menu-mobile .profile-mobile-nav:first-of-type {
+        margin-top: 0.5rem;
+        padding-top: 1.5rem;
         border-top: 1px solid var(--border-color);
-        padding-top: 1rem !important;
-    }
-    
-    .profile-mobile-nav:first-of-type {
-        margin-top: 1rem;
+        border-radius: 12px;
     }
     
     .logout-btn-mobile {
@@ -9707,12 +9712,14 @@ body {
         background: linear-gradient(135deg, #ef4444, #dc2626);
         color: white;
         border: none;
-        border-radius: 0.75rem;
+        border-radius: 12px;
         font-size: 1rem;
         cursor: pointer;
+        transition: all 0.2s ease;
     }
     
     .logout-btn-mobile:hover {
         background: linear-gradient(135deg, #dc2626, #b91c1c);
+        transform: scale(1.02);
     }
 }
