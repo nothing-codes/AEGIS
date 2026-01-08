@@ -5,7 +5,7 @@
 // Settings → API → Project URL и anon public key
 
 const SUPABASE_URL = 'https://pgijhusogwvtlaoxtqow.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_bjVuVHnhJ9xbvzwE2UMLBw_beWiu8e-';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaWpodXNvZ3d2dGxhb3h0cW93Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4NDcwNDAsImV4cCI6MjA4MzQyMzA0MH0.993eX2i9z6Ez3nAM66XGR0sgfg3iEEJGQalIZWU6vi0';
 
 // Инициализация Supabase клиента
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
