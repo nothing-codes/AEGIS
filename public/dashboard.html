@@ -32,8 +32,24 @@
                     <option value="en">EN</option>
                 </select>
             </div>
-            <div class="mobile-menu-toggle"><span></span><span></span><span></span></div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
+        <div class="nav-menu-mobile" id="navMenuMobile">
+            <a href="/" class="nav-link" data-translate="nav-home">Главная</a>
+            <a href="/features" class="nav-link" data-translate="nav-features">Возможности</a>
+            <a href="/download" class="nav-link" data-translate="nav-download">Скачать</a>
+            <a href="/support" class="nav-link" data-translate="nav-support">Поддержка</a>
+            <a href="#profile" class="nav-link profile-mobile-nav" data-section="profile">Профиль</a>
+            <a href="#security" class="nav-link profile-mobile-nav" data-section="security">Безопасность</a>
+            <a href="#settings" class="nav-link profile-mobile-nav" data-section="settings">Настройки</a>
+            <button class="logout-btn-mobile" onclick="AegisApp.logout()">
+                <i class="fas fa-sign-out-alt"></i> Выйти
+            </button>
+        </div>
     </header>
 
     <section class="profile-page">
@@ -328,6 +344,25 @@
                         sec.classList.remove('active');
                     });
                     document.getElementById(section).classList.add('active');
+                });
+            });
+            
+            // Mobile profile navigation
+            var mobileNavItems = document.querySelectorAll('.profile-mobile-nav');
+            mobileNavItems.forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var section = this.getAttribute('data-section');
+                    document.querySelectorAll('.profile-section-content').forEach(function(sec) {
+                        sec.classList.remove('active');
+                    });
+                    document.getElementById(section).classList.add('active');
+                    // Close mobile menu
+                    var mobileMenu = document.getElementById('navMenuMobile');
+                    var toggle = document.getElementById('mobileMenuToggle');
+                    if (mobileMenu) mobileMenu.classList.remove('active');
+                    if (toggle) toggle.classList.remove('active');
+                    document.body.classList.remove('menu-open');
                 });
             });
         }

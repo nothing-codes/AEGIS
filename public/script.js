@@ -732,19 +732,22 @@ function translatePage() {
 
 function initializeMobileMenu() {
     var toggle = document.querySelector('.mobile-menu-toggle');
-    var menu = document.querySelector('.nav-menu');
-    if (toggle && menu) {
+    var menu = document.querySelector('.nav-menu') || document.querySelector('.nav-menu-mobile');
+    var mobileMenu = document.getElementById('navMenuMobile');
+    
+    if (toggle && (menu || mobileMenu)) {
+        var targetMenu = mobileMenu || menu;
         toggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
+            targetMenu.classList.toggle('active');
             toggle.classList.toggle('active');
             document.body.classList.toggle('menu-open');
         });
         
         // Close menu when clicking on a link
-        var links = menu.querySelectorAll('.nav-link');
+        var links = targetMenu.querySelectorAll('.nav-link:not(.profile-mobile-nav)');
         links.forEach(function(link) {
             link.addEventListener('click', function() {
-                menu.classList.remove('active');
+                targetMenu.classList.remove('active');
                 toggle.classList.remove('active');
                 document.body.classList.remove('menu-open');
             });
@@ -752,8 +755,8 @@ function initializeMobileMenu() {
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!menu.contains(e.target) && !toggle.contains(e.target) && menu.classList.contains('active')) {
-                menu.classList.remove('active');
+            if (!targetMenu.contains(e.target) && !toggle.contains(e.target) && targetMenu.classList.contains('active')) {
+                targetMenu.classList.remove('active');
                 toggle.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
