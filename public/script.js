@@ -92,6 +92,16 @@ const translations = {
         'terms-text-6': 'По всем вопросам обращайтесь на support@aegis-av.com или в наш Telegram канал.',
         'accept-terms': 'Принять условия',
         
+        // Reset Password
+        'reset-password': 'Восстановление пароля',
+        'reset-description': 'Введите email, указанный при регистрации. Мы отправим вам ссылку для сброса пароля.',
+        'send-reset-link': 'Отправить ссылку',
+        'reset-email-sent': 'Письмо отправлено! Проверьте вашу почту.',
+        
+        // Contact Form
+        'message-sent': 'Сообщение успешно отправлено!',
+        'message-error': 'Ошибка отправки сообщения',
+        
         // Home page
         'hero-badge': 'Новое поколение защиты',
         'hero-title-1': 'Максимальная',
@@ -432,6 +442,16 @@ const translations = {
         'terms-section-6': '6. Contact',
         'terms-text-6': 'For any questions, contact support@aegis-av.com or our Telegram channel.',
         'accept-terms': 'Accept Terms',
+        
+        // Reset Password
+        'reset-password': 'Reset Password',
+        'reset-description': 'Enter the email you used to register. We will send you a link to reset your password.',
+        'send-reset-link': 'Send Reset Link',
+        'reset-email-sent': 'Email sent! Check your inbox.',
+        
+        // Contact Form
+        'message-sent': 'Message sent successfully!',
+        'message-error': 'Error sending message',
 
         // Home page
         'hero-badge': 'Next Generation Protection',

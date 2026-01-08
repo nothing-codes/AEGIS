@@ -239,20 +239,20 @@
                 <div class="contact-form-card">
                     <h3 data-translate="send-message">Отправить сообщение</h3>
                     <p data-translate="form-desc">Заполните форму и мы ответим в течение 24 часов</p>
-                    <form class="contact-form-new">
+                    <form class="contact-form-new" id="contactForm" onsubmit="sendToTelegram(event)">
                         <div class="form-row">
                             <div class="form-group">
                                 <label data-translate="name">Имя</label>
-                                <input type="text" data-translate="your-name" placeholder="Ваше имя" required>
+                                <input type="text" id="contactName" data-translate="your-name" placeholder="Ваше имя" required>
                             </div>
                             <div class="form-group">
                                 <label data-translate="email">Email</label>
-                                <input type="email" placeholder="example@mail.com" required>
+                                <input type="email" id="contactEmail" placeholder="example@mail.com" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label data-translate="topic">Тема</label>
-                            <select>
+                            <select id="contactTopic">
                                 <option value="" data-translate="select-topic">Выберите тему</option>
                                 <option value="technical" data-translate="technical-issue">Техническая проблема</option>
                                 <option value="account" data-translate="account-question">Вопрос по аккаунту</option>
@@ -262,9 +262,9 @@
                         </div>
                         <div class="form-group">
                             <label data-translate="message">Сообщение</label>
-                            <textarea data-translate="describe-question" placeholder="Опишите ваш вопрос..." rows="5" required></textarea>
+                            <textarea id="contactMessage" data-translate="describe-question" placeholder="Опишите ваш вопрос..." rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large btn-full">
+                        <button type="submit" class="btn btn-primary btn-large btn-full" id="contactSubmitBtn">
                             <i class="fas fa-paper-plane"></i>
                             <span data-translate="send">Отправить сообщение</span>
                         </button>
@@ -314,5 +314,60 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Telegram Bot Configuration
+        const TELEGRAM_BOT_TOKEN = '8465354385:AAEZwvFEfeeWtGERU-M1f8o9kRwmj8fIxgY';
+        const TELEGRAM_CHAT_ID = '8465354385';
+
+        async function sendToTelegram(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const topic = document.getElementById('contactTopic');
+            const topicText = topic.options[topic.selectedIndex].text;
+            const message = document.getElementById('contactMessage').value;
+            const btn = document.getElementById('contactSubmitBtn');
+            
+            // Формируем сообщение
+            const text = `📩 *Новое сообщение с сайта AEGIS*\n\n` +
+                `👤 *Имя:* ${name}\n` +
+                `📧 *Email:* ${email}\n` +
+                `📋 *Тема:* ${topicText}\n\n` +
+                `💬 *Сообщение:*\n${message}`;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: text,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.ok) {
+                    showNotification(translations[currentLanguage]['message-sent'] || 'Сообщение отправлено!', 'success');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error(data.description);
+                }
+            } catch (error) {
+                console.error('Telegram error:', error);
+                showNotification(translations[currentLanguage]['message-error'] || 'Ошибка отправки', 'error');
+            }
+            
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i><span data-translate="send">Отправить сообщение</span>';
+        }
+    </script>
 </body>
 </html>

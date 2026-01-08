@@ -215,6 +215,26 @@ async function deleteAccount() {
     }
 }
 
+async function resetPassword(email) {
+    try {
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin + '/login'
+        });
+
+        if (error) {
+            showNotification(error.message, 'error');
+            return false;
+        }
+
+        showNotification(translations[currentLanguage]['reset-email-sent'], 'success');
+        return true;
+    } catch (err) {
+        showNotification('Ошибка подключения к серверу', 'error');
+        console.error(err);
+        return false;
+    }
+}
+
 // Переопределяем глобальные функции
 window.register = supabaseRegister;
 window.login = supabaseLogin;
