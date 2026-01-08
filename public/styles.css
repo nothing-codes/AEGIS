@@ -9689,6 +9689,23 @@ body {
 }
 
 /* Fix burger icon color */
-.mobile-menu-toggle span {
-    background: #8b5cf6 !important;
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        padding: 8px;
+        z-index: 10000;
+        position: relative;
+    }
+    
+    .mobile-menu-toggle span {
+        display: block;
+        width: 28px;
+        height: 3px;
+        background: #8b5cf6 !important;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
 }
