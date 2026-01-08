@@ -9506,6 +9506,12 @@ body {
         color: white;
     }
     
+    .nav-menu .nav-link:active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+    }
+    
     /* Mobile menu buttons */
     .mobile-nav-controls {
         display: flex !important;
@@ -9641,9 +9647,15 @@ body {
     }
     
     .nav-menu-mobile .nav-link:hover {
-        background: var(--primary-light);
+        background: var(--primary);
         border-color: var(--primary);
-        transform: scale(1.02);
+        color: white;
+    }
+    
+    .nav-menu-mobile .nav-link:active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
     }
     
     .nav-menu-mobile .profile-mobile-nav:first-of-type {
@@ -9674,4 +9686,9 @@ body {
         background: linear-gradient(135deg, #dc2626, #b91c1c);
         transform: scale(1.02);
     }
+}
+
+/* Fix burger icon color */
+.mobile-menu-toggle span {
+    background: var(--primary) !important;
 }
